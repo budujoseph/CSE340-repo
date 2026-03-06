@@ -1,6 +1,215 @@
+:root {
+  --background: #2f61ac;
+  --primary: #1F3A5F;
+  --accent: #E63946;
+  --highlight: #3A86FF;
+  --text: #1A1A1A;
+  --card: #FFFFFF;
+}
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body  {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* MAIN CONTAINER */
+
+#wrapper {
+  max-width: 900px;
+  width: 95%;
+  margin: 20px auto;
+  background-color: var(--card);
+  border: 4px solid var(--highlight);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* HEADER */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.siteName a {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #14213D;
+}
+
+#tools a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+#tools a:hover {text-decoration: underline;}
+
+
+/* NAVIGATION */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  background: var(--primary);
+  padding: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav li:hover {
+  color: var(--highlight);
+  cursor: pointer;
+}
+
+/* HERO SECTION */
+.hero-text {
+  position: absolute;
+  background-color: rgba(225, 225, 225, 0.7);
+  padding: 10px;
+  color: #0f8b8d;
+  max-width: 300px;
+  margin-top: 1rem;
+}
+
+.hero-text h2,p {
+  font-weight: bold;
+}
+
+.hero-text h2{color: var(--highlight); padding: 5px;}
+.hero-text p {font-size: 20px; color: var(--accent);}
+.hero-text img {margin-top: 10px;}
+
+.hero-img {text-align: center;}
+
+.hero-img img {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* UPGRADES AND REVIEWS */
+.upgrades-reviews {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 20px;
+}
+
+.upgrades-reviews h3 {
+  text-align: center;
+  font-size: 24px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/* UPGRADES */
+
+.upgrades{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  order: 2;
+}
+
+.upgrades h3 {
+  grid-column: 1/3;
+  color: #14213d;
+}
+
+.upgrades figure {
+  background: #e8f2ff;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #0f8b8d;
+}
+
+.upgrades figure figcaption {
+  margin-top: 5px;
+  color: blue;
+  text-decoration: underline;
+}
+
+
+/* REVIEWS */
+.reviews {
+  padding: 10px;
+  order: 1;
+}
+
+.reviews h3 {
+  margin-bottom: 2.2rem;
+  color: #14213D;
+}
+  
+.review-list li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding: 10px;
+}
+
+
+footer {
+  margin-top: 2rem;
+  font-size: .9rem;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  background-color: #0c0e13;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+
+
+
+
+/* LARGE SCREENS */
+
+@media screen and (min-width: 700px) {
+
+
+  body {
+    background-image: url(/images/site/checkerboard.jpg);
+  }
+
+
+ .upgrades-reviews {
+  grid-template-columns: 1fr 1fr;
+ }
+
+.reviews{order: initial; margin-left: 1rem;}
+.upgrades{order: initial;}
+
+ }
+
+
+
+
+
+
+
+
+
+
+

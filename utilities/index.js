@@ -46,15 +46,15 @@ Util.buildClassificationGrid = async function (data){
         grid = '<ul id= "inv-display">'
         data.forEach(vehicle => {
             grid += '<li>'
-            grid += '<a href= "../../inv/detail/' + vehicle.inv_id
+            grid += '<a href= "/inv/detail/' + vehicle.inv_id
             + '" title="view ' + vehicle.inv_make + '  ' + vehicle.inv_model
-            + 'details"><img src= "' + vehicle.inv_thumbnail
+            + ' details"><img src= "' + vehicle.inv_thumbnail
             + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
-            + ' on CSE Motors" /></a>' 
+            + ' on CSE Motors" ></a>' 
             grid += '<div class="namePrice">'
-            grid += '<hr />'
+            grid += '<hr>'
             grid += '<h2>'
-            grid += '<a href= "../../inv/details' + vehicle.inv_id + '"title="View '
+            grid += '<a href= "/inv/detail/' + vehicle.inv_id + '"title="View '
             + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
             + vehicle.inv_make + ' ' +vehicle.inv_model + '</a>'
             grid += '</h2>'
@@ -69,4 +69,44 @@ Util.buildClassificationGrid = async function (data){
         grid += '<p class= "notice">Sorry, no matching vehicles could be found </p>'
     }
     return grid
+}
+
+
+/* **************************************
+* Build the detail view HTML
+* ************************************ */
+Util.buildVehicleDetail = async function (vehicle) {
+    let detail = ""
+    if (vehicle) {
+        detail += '<div class= "vehicle-detail">'
+
+        detail += '<div class="detail-img">' +
+          '<img src="' + vehicle.inv_image + '" ' +
+          'alt="' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '" ' +
+          'title="Details of ' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">' +
+          '</div>';
+        
+        detail += '<div class= "detail-info">' + 
+        '<h2 title= "Details of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">' + vehicle.inv_year + ' ' + vehicle.inv_make
+        + ' ' + vehicle.inv_model + " details" + 
+        '</h2>'
+        
+        detail += '<p title= "Price of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '"><strong>Price: </strong> $'
+        + new Intl.NumberFormat("en-US").format(vehicle.inv_price) + '</p>'
+        
+        detail += '<p title= "Description of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '"><strong>Description: </strong>'
+        + vehicle.inv_description + '</p>'
+        
+        detail += '<p title= "Color of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '"><strong>Color: </strong>'
+        + vehicle.inv_color  + '</p>'
+        
+        detail += '<p title= "Mileage of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '"><strong>Miles: </strong>'
+        + new Intl.NumberFormat("en-US").format(vehicle.inv_miles) + '</p>' + '</div>'
+        
+        detail += '</div>'
+    } else {
+        detail += '<p class= "notice">Sorry, vehicle not found.</p>'
+    }
+
+    return detail
 }

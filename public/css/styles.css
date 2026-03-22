@@ -73,13 +73,14 @@ nav ul {
   flex-wrap: wrap;
 }
 
-nav ul li {
+nav ul li a {
   color: white;
   font-weight: bold;
   font-size: 20px;
+  text-decoration: none;
 }
 
-nav li:hover {
+nav li a:hover {
   color: var(--highlight);
   cursor: pointer;
 }
@@ -192,10 +193,67 @@ footer {
   border-radius: 3px;
 }
 
+/* VEHICLE GRID DISPLAY VIEW */
 
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+}
 
+#inv-display li {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  max-width: 250px;
+  width: 100%;
+  list-style: none;
+  background-color: #ececec;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
 
+#inv-display .namePrice a {
+  text-decoration: none;
+  padding: 6px;
+}
 
+#inv-display .namePrice h2 {
+  padding: 6px;
+}
+
+#inv-display .namePrice hr {
+  border: none;
+  height: 3px;
+  background-color: #000;
+  width: 100%;
+}
+
+/* VEHICLE DETAILS */
+.vehicle-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-img {
+  margin-top: 1rem;
+}
+
+.detail-info {
+  padding: 10px;
+}
+
+.detail-info h2 {
+  margin-bottom: 1rem;
+}
+
+.detail-info p {
+  padding: 8px;
+}
 /* LARGE SCREENS */
 
 @media screen and (min-width: 700px) {
@@ -212,6 +270,13 @@ footer {
 
 .reviews{order: initial; margin-left: 1rem;}
 .upgrades{order: initial;}
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
 
  }
 

@@ -1,10 +1,8 @@
-
-<% if (title) { %>
-    <h1>
+<div class="err-container">
+    <h1 class="server-err">
         <%= title %>
     </h1>
-    <% } else { %>
-        <h1>Server Error</h1>
-        <% } %>
-
-            <p><%= message %></p>
+    <p class="error-msg">
+        <%= message %>
+    </p>
+</div>

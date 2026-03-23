@@ -237,10 +237,14 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .detail-img {
   margin-top: 1rem;
+  width: 95%;
+  height: auto;
 }
 
 .detail-info {
@@ -254,6 +258,41 @@ footer {
 .detail-info p {
   padding: 8px;
 }
+
+/* ERROR PAGE */
+.err-container {
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  max-width: 500px;
+}
+
+.server-err {
+  font-size: 2rem;
+  color: #f20b0b;
+}
+
+.error-msg {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.error-link {
+  text-decoration: none;
+  margin-top: 1rem;
+  padding: 8px;
+  color: white;
+}
+
+.error-link:hover {
+  text-decoration: underline;
+}
+
+
+
 /* LARGE SCREENS */
 
 @media screen and (min-width: 700px) {

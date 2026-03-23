@@ -18,6 +18,7 @@ Util.getNav = async function () {
             ' vehicles">' +
             row.classification_name +
             "</a>"
+        list += "</li>"
     })
 
     list += "</ul>"
@@ -46,20 +47,20 @@ Util.buildClassificationGrid = async function (data){
         grid = '<ul id= "inv-display">'
         data.forEach(vehicle => {
             grid += '<li>'
-            grid += '<a href= "/inv/detail/' + vehicle.inv_id
-            + '" title="view ' + vehicle.inv_make + '  ' + vehicle.inv_model
-            + ' details"><img src= "' + vehicle.inv_thumbnail
-            + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
-            + ' on CSE Motors" ></a>' 
+            grid += '<a href="/inv/detail/' + vehicle.inv_id + '" ' +
+                    ' title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' +
+                    '<img src="' + vehicle.inv_thumbnail + '" ' +
+                    'alt="' + vehicle.inv_make + ' ' + vehicle.inv_model + '">' +
+                    '</a>'
             grid += '<div class="namePrice">'
             grid += '<hr>'
             grid += '<h2>'
-            grid += '<a href= "/inv/detail/' + vehicle.inv_id + '"title="View '
-            + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
-            + vehicle.inv_make + ' ' +vehicle.inv_model + '</a>'
+            grid += '<a href= "/inv/detail/' + vehicle.inv_id + '" title="View '
+                    + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
+                    + vehicle.inv_make + ' ' +vehicle.inv_model + '</a>'
             grid += '</h2>'
             grid += '<span>$'
-            + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+                    + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
             grid += '</div>'
             grid += '</li>'
         })
@@ -83,7 +84,7 @@ Util.buildVehicleDetail = async function (vehicle) {
         detail += '<div class="detail-img">' +
           '<img src="' + vehicle.inv_image + '" ' +
           'alt="' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '" ' +
-          'title="Details of ' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">' +
+          ' title="Details of ' + vehicle.inv_year + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">' +
           '</div>';
         
         detail += '<div class= "detail-info">' + 

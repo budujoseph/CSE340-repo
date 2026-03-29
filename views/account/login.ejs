@@ -1,0 +1,44 @@
+<h1>
+    <%= title %>
+</h1>
+
+<div class="login-container">
+    
+    <!-- FLASH MESSAGE -->
+    <%- messages() %>
+
+    <!--  Display Errors -->
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <!-- LOGIN FORM -->
+     <form action="/account/login" method="post" class="login-form">
+        <label>Email:
+            <input type="email" id="email" name="account_email" required placeholder="Enter your email" autocomplete="email"
+            value="<%= locals.account_email %>">
+        </label>
+        <p>
+            Password must be:<br>
+            ✅12 characters in length, minimum<br>
+            ✅contain at least 1 capital letter<br>
+            ✅contain at least 1 number<br>
+            ✅contain at least 1 special letter<br>
+        </p>
+        <label>Password:
+            <input type="password" id="password" name="account_password" required placeholder="Enter your password" 
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        </label>
+        <button type="submit">Login</button>
+     </form>
+     <p class="register-link">
+        No account?
+        <a href="/account/register/">Sign up</a>
+     </p>
+</div>

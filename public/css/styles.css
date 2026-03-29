@@ -291,6 +291,124 @@ footer {
   text-decoration: underline;
 }
 
+/* LOGIN FORM and REGISTER FORM */
+.login-container, .register-container, .add-classification-container, .add-inventory-container {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #2f4356;
+  border-radius: 12px;
+  border: 2px solid #d4dfa3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+.login-form, .register-form, .inventory-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label, .register-form label, .add-classification-form label, .inventory-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.login-form input, .register-form input, .add-classification-form input, .inventory-form input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.4rem 0 1rem 0;
+  border-radius: 6px;
+  border: none;
+  background-color: #e6e6e6;
+  font-size: 1rem;
+}
+
+.login-form button, .register-form button, .add-classification-form button, .inventory-form button {
+  align-self: center;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  background-color: #e6e6e6;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-classification-form p {
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+  color: aqua;
+}
+
+.login-form button:hover {
+  background-color: #d0d0d0;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.register-link a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.flash-message {
+  background-color: #ffdddd;
+  color: #900;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.register-form p {
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* ERROR NOTICE STYLES */
+.notice {
+  background-color: #ffdddd;
+  color: #900;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  list-style-type: none;
+}
+
+.management-view {
+  padding: 1rem;
+  width: 100%;
+}
+.management-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.management-links li {
+  list-style-type: none;
+}
+.management-links a {
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--background);
+  padding: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+}
 
 
 /* LARGE SCREENS */

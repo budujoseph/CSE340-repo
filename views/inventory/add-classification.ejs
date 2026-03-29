@@ -1,0 +1,27 @@
+<h1>
+    <%- title %>
+</h1>
+<div class="add-classification-container">
+    <%- messages() %>
+
+    <!--  Display Errors -->
+    <% if (errors && !errors.isEmpty()) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <form action="/inv/add-classification" class="add-classification-form" method="post">
+        <label>Classification name
+            <input type="text" name="classification_name" required pattern="^[a-zA-Z0-9]+$" 
+            value="<%= locals.classification_name %>">
+        </label>
+        <p>No spaces or special characters allowed</p>
+       
+        <button>Add</button>
+    </form>
+</div>

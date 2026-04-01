@@ -1,0 +1,14 @@
+
+<%- messages() %>
+
+<!--  Display Errors -->
+<% if (errors && !errors.isEmpty()) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+        <% }) %>
+    </ul>
+<% } %>
+<p>You're logged in.</p>

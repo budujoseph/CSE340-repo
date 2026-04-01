@@ -21,6 +21,7 @@ const utilities = require("./utilities/")
 const { error } = require("console")
 const { title } = require("process")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 
 app.use(express.static(path.join(__dirname, "public")))
@@ -48,6 +49,10 @@ app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res)
   next()
 })
+
+app.use(cookieParser())
+
+app.use(utilities.checkJwtToken) // Check JWT token on every request to see if user is logged in
 
 /* ***********************
  * View Engine and Templates

@@ -22,4 +22,19 @@ router.post("/add-inventory",
     utilities.handleErrors(invController.addNewInventory)
 )
 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Edit and Delete routes for inventory items
+router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEditInventory))
+
+// Post route to update inventory item in database after editing
+router.post("/edit/:inventory_id",
+    classificationValidate.addInventoryRules(),
+    classificationValidate.checkInventoryData,
+    utilities.handleErrors(invController.updateInventory)
+)
+
+// Route to direct incoming updates to the controller
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
+
 module.exports = router;

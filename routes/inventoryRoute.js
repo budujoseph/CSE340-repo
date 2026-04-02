@@ -31,10 +31,15 @@ router.get("/edit/:inventory_id", utilities.handleErrors(invController.buildEdit
 router.post("/edit/:inventory_id",
     classificationValidate.addInventoryRules(),
     classificationValidate.checkInventoryData,
-    utilities.handleErrors(invController.updateInventory)
+   // utilities.handleErrors(invController.updateInventory)
 )
 
 // Route to direct incoming updates to the controller
 router.post("/update/", utilities.handleErrors(invController.updateInventory))
+
+// Route to direct incoming delete requests to the controller
+router.get("/delete/:inventory_id", utilities.handleErrors(invController.deleteInventory))
+
+router.post("/delete/", utilities.handleErrors(invController.deleteInventoryData))
 
 module.exports = router;

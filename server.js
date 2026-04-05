@@ -22,7 +22,7 @@ const { error } = require("console")
 const { title } = require("process")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-
+const jwt = require("jsonwebtoken")
 
 app.use(express.static(path.join(__dirname, "public")))
 
@@ -54,6 +54,27 @@ app.use(cookieParser())
 
 app.use(utilities.checkJwtToken) // Check JWT token on every request to see if user is logged in
 
+app.use((req, res, next) => {
+  const token = req.cookies.jwt
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+      res.locals.accountData = decoded
+      res.locals.loggedin = true  
+    } catch (error) {
+      req.flash("notice", "Please log in to access that page.")
+      res.clearCookie("jwt")
+      res.locals.loggedin = false
+      res.locals.accountData = null
+      return res.redirect("/account/login")
+    }
+  } else {
+    res.locals.loggedin = false
+    res.locals.accountData = null
+  }
+  next()
+})
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -69,7 +90,7 @@ app.set("layout", "./layouts/layout")
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 //Inventory routes
-app.use("/inv", utilities.handleErrors(inventoryRoute))
+app.use("/inv", inventoryRoute)
 
 // Vehicle detail route
 app.get("/detail/:inv_id", utilities.handleErrors(invController.buildByInventoryId))

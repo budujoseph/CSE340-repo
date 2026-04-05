@@ -142,7 +142,7 @@ Util.checkJwtToken = (req, res, next) => {
             process.env.ACCESS_TOKEN_SECRET,
             function (err, accountData) {
                 if (err) {
-                    req.flash("Please log in")
+                    req.flash("notice","Please log in")
                     res.clearCookie("jwt")
                     return res.redirect("/account/login")
                 }

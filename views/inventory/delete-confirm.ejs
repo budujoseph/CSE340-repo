@@ -18,9 +18,6 @@
 
     <form action="/inv/delete" method="post" class="inventory-form">
         <p>Confirm deletion - The delete is permanent</p>
-        <!-- <label>Classification
-            <%#- classificationSelect %>
-        </label> -->
         <label>Make
             <input type="text" name="inv_make" required value="<%= locals.inv_make %>" placeholder="Min of 3 characters" minlength="3" readonly>
         </label>

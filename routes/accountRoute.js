@@ -20,5 +20,17 @@ router.post("/login",
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccount))
 
+router.get("/update-view/:account_id", utilities.handleErrors(accountController.buildUpdateAccount))
+
+router.post("/update-view",
+    utilities.handleErrors(accountController.updateAccount),
+)
+
+router.post("/update-password",
+    utilities.handleErrors(accountController.updatePassword),
+)
+
+router.get("/logout", utilities.handleErrors(accountController.accountLogout))
+
 
 module.exports = router

@@ -101,7 +101,8 @@ invCont.buildAddInventory = async function(req, res, next) {
         errors: null
     })
 }
- invCont.addNewInventory = async function (req, res) {
+
+invCont.addNewInventory = async function (req, res) {
     let nav = await utilities.getNav()
     const {
         inv_make,
@@ -132,7 +133,7 @@ invCont.buildAddInventory = async function(req, res, next) {
 
     if (invResult) {
         req.flash("notice", "Inventory item added successfully")
-        res.status(201).render("inventory/management", {
+        res.redirect("/account/", {
             title: "Add Inventory",
             nav,
             errors: null
@@ -224,7 +225,7 @@ invCont.updateInventory = async function (req, res, next) {
     if (updateResult) {
         const itemName = updateResult.inv_make + " " + updateResult.inv_model
         req.flash("notice", `The ${itemName} was successfully updated.`)
-        res.redirect("/inv/")
+        res.redirect("/account/")
     } else {
         const classificationSelect = await utilities.buildClassificationList(classification_id)
         const itemName = `${inv_make} ${inv_model}`
@@ -281,10 +282,10 @@ invCont.deleteInventoryData = async function (req, res, next) {
 
     if (deleteResult) {
         req.flash("notice", "The vehicle was successfully deleted.")
-        res.redirect("/inv/")
+        res.redirect("/account/")
     } else {
         req.flash("notice", "Sorry, the delete failed.")
-        res.redirect("inventory/delete-confirm/inv_id", {
+        res.redirect("inventory/delete-confirm/" + inv_id, {
             title: "Delete Inventory Item",
             nav,
             errors: null

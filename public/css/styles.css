@@ -292,7 +292,7 @@ footer {
 }
 
 /* LOGIN FORM and REGISTER FORM */
-.login-container, .register-container, .add-classification-container, .add-inventory-container {
+.login-container, .register-container, .add-classification-container, .add-inventory-container, .account-update-view {
   max-width: 420px;
   margin: 3rem auto;
   padding: 2rem;
@@ -303,12 +303,13 @@ footer {
   color: #fff;
 }
 
-.login-form, .register-form, .inventory-form {
+.login-form, .register-form, .inventory-form, #updateAccountForm {
   display: flex;
   flex-direction: column;
 }
 
-.login-form label, .register-form label, .add-classification-form label, .inventory-form label {
+.login-form label, .register-form label, .add-classification-form label, .inventory-form label,
+.account-update-view label, #updatePasswordForm label {
   font-weight: bold;
   margin-bottom: 0.5rem;
   display: flex;
@@ -316,7 +317,8 @@ footer {
   font-size: 20px;
 }
 
-.login-form input, .register-form input, .add-classification-form input, .inventory-form input, select, textarea {
+.login-form input, .register-form input, .add-classification-form input, .inventory-form input, 
+select, textarea, #updateAccountForm input, #updatePasswordForm input {
   width: 100%;
   padding: 0.7rem;
   margin: 0.4rem 0 1rem 0;
@@ -326,7 +328,8 @@ footer {
   font-size: 1rem;
 }
 
-.login-form button, .register-form button, .add-classification-form button, .inventory-form button {
+.login-form button, .register-form button, .add-classification-form button, .inventory-form button,
+.account-update-view button, #updatePasswordForm button {
   align-self: center;
   padding: 10px;
   width: 100%;
@@ -410,6 +413,42 @@ footer {
   font-weight: bold;
 }
 
+/* ACCOUNT MANAGEMENT VIEW  */
+.account-management {
+  padding: 1rem;
+
+}
+
+.account-management h2, .account-management h3, .account-management p {
+  color: #14213D;
+  padding: 8px;
+  margin: 0;
+}
+
+/* ACCOUNT UPDATE VIEW */
+.account-update-view h2 {
+  padding: 8px;
+  margin-bottom: 1rem;
+}
+
+.account-update-view p {
+  padding: 8px;
+  margin: 0;
+}
+
+/* MANAGE INVENTORY TABLE */
+
+#inventoryDisplay {
+  width: 70%;
+  border-collapse: collapse;
+}
+
+#inventoryDisplay th, #inventoryDisplay td {
+  border: 1px solid #050505;
+  padding: 8px;
+  text-align: left;
+
+}
 
 /* LARGE SCREENS */
 

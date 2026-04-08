@@ -32,5 +32,10 @@ router.post("/update-password",
 
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
 
+router.post("/add-favorite", utilities.handleErrors(accountController.addToFavorites))
+
+router.get("/add-favorite", utilities.handleErrors(accountController.buildFavoritesView))
+
+router.post("/remove-favorite", utilities.handleErrors(accountController.removeFromFavorites))
 
 module.exports = router

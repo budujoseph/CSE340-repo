@@ -1,0 +1,36 @@
+<div class="favorites-container">
+    <%- messages() %>
+    
+        <!--  Display Errors -->
+    <% if (errors && !errors.isEmpty()) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <h1>Your Favorite Vehicles</h1>
+    <ul>
+        <% if (favorites && favorites.length> 0) { %>
+            <% favorites.forEach(vehicle=> { %>
+                <li>
+                    <h3>
+                        <img src="<%= vehicle.inv_thumbnail %>" alt="<%= vehicle.inv_make %>" class="vehicle-image">
+                        <%= vehicle.inv_make %>
+                        <%= vehicle.inv_model %>
+                    </h3>
+                    <p>Price: $<%= vehicle.inv_price %></p>
+                    <form method="POST" action="/account/remove-favorite" class="remove-favorite-form">
+                        <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+                        <button type="submit" class="remove-favorite-button">Remove from Favorites</button>
+                    </form>
+                </li>
+                <% }) %>
+            <% } else { %>
+                <p>No favorite vehicles found.</p>
+        <% } %>
+    </ul>
+</div>

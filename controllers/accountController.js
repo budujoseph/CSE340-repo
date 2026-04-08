@@ -209,7 +209,93 @@ async function accountLogout(req, res) {
     return res.redirect("/")
 }
 
+// function to add favourite vehicle for the user
+async function addToFavorites(req, res) {
+    const account_id = res.locals.accountData.account_id
+    const { inv_id } = req.body
+    try {
+        const existingFavorite = await accountModel.checkExistingFavorite(account_id, inv_id)
+        if (existingFavorite > 0) {
+            req.flash("notice", "Item is already in favorites.")
+            return res.redirect("/account/add-favorite")
+        }
+
+        const favorites = await accountModel.addFavorite(account_id, inv_id)
+
+        if (favorites) {
+            req.flash("notice", "Item added to favorites.")
+        } else {
+            req.flash("notice", "Failed to add item to favorites.")
+        } 
+        return res.redirect("/account/add-favorite")
+
+    } catch (error) {
+        console.error("Add to favorites error:", error)
+    }
+
+}
+
+// function to build the favorites view for the user
+async function buildFavoritesView(req, res) {
+    let nav = await utilities.getNav()
+    const account_id = res.locals.accountData.account_id
+
+    try {
+        const favorites = await accountModel.getFavoritesByAccountId(account_id)
+        res.render("account/add-favorite", {
+            title: "My Favorites",
+            nav,
+            errors: null,
+            favorites
+        })
+    } catch (error) {
+        console.error("Build favorites view error:", error)
+        req.flash("notice", "An error occurred while retrieving your favorites.")
+        res.render("account/add-favorite", {
+            title: "My Favorites",
+            nav,
+            errors: null,
+            favorites: []
+        })
+    }
+}
+
+async function removeFromFavorites(req, res) {
+    const account_id = res.locals.accountData.account_id
+    const { inv_id } = req.body
+    try {
+        const removeResult = await accountModel.deleteFavorite(account_id, inv_id)
+        if (removeResult) {
+            req.flash("notice", "Item removed from favorites.")
+            res.redirect("/account/add-favorite")
+        } else {
+            req.flash("notice", "Failed to remove item from favorites.")
+            res.redirect("/account/add-favorite")
+        }
+    } catch (error) {
+        console.error("Remove from favorites error:", error)
+        req.flash("notice", "An error occurred while removing the item from favorites.")
+        res.redirect("/account/add-favorite")
+    }
+}
+
+// async function checkExistingFavorite(account_id, inv_id) {
+//    try {
+//        const account_id = res.locals.accountData.account_id
+//        const {inv_id} = req.body
+//        const existingFavorite = await accountModel.checkExistingFavorite(account_id, inv_id)
+//        if(existingFavorite > 0) {
+//            req.flash("notice", "Item is already in favorites.")
+//            res.redirect("/account/add-favorite")
+//        }
+//    } catch (error) {
+//          console.error("Check existing favorite error:", error)
+//    } 
+// }
+
+
 module.exports = {
     buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, checkJwtToken,
-    buildUpdateAccount, updateAccount, updatePassword, accountLogout
+    buildUpdateAccount, updateAccount, updatePassword, accountLogout, addToFavorites, buildFavoritesView,
+    removeFromFavorites
 }

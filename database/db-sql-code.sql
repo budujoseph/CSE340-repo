@@ -252,4 +252,11 @@ WHERE inv_make = 'GM' and inv_model = 'Hummer';
 --in the inv_image and inv_thumbnail columns using a single query.
 UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/' ),
-	inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/' );
+
+-- Create table `favorites` to store the favorite inventory items for each account
+CREATE TABLE favorites (
+  favorite_id SERIAL PRIMARY KEY,
+  account_id INT REFERENCES account(account_id),
+  inv_id INT REFERENCES inventory(inv_id),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

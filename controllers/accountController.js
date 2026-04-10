@@ -205,12 +205,18 @@ async function updatePassword(req, res) {
 
 async function accountLogout(req, res) {
     res.clearCookie("jwt")
-    req.flash("notice", "You have been logged out.")
+    // req.flash("notice", "You have been logged out.")
     return res.redirect("/")
 }
 
 // function to add favourite vehicle for the user
 async function addToFavorites(req, res) {
+    accountData = res.locals.accountData
+
+        if (!accountData) {
+            req.flash("notice", "Please log in to add items to favorites.")
+            return res.redirect("/account/login")
+        }
     const account_id = res.locals.accountData.account_id
     const { inv_id } = req.body
     try {
@@ -228,6 +234,7 @@ async function addToFavorites(req, res) {
             req.flash("notice", "Failed to add item to favorites.")
         } 
         return res.redirect("/account/add-favorite")
+
 
     } catch (error) {
         console.error("Add to favorites error:", error)
